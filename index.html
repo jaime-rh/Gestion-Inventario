@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>racticaDiseño_RA4</title>
+    <link rel="stylesheet" href=".//index.css">
+</head>
+<body>
+    <form action="">
+        <h1>Gestión de inventario de productos</h1>
+        Nombre de producto: <input type="text" id="nombre", name="nombre"><br><br>
+        Categoría: <select name="categoria" id="categoria">
+                        <option value="Electrónica">Electrónica</option>
+                        <option value="Alimentación">Alimentación</option>
+                   </select><br><br>
+        Cantidad: <input type="text" id="cantidad", name="cantidad"><br><br>
+        Precio: <input type="text" id="precio", name="precio"><br><br>
+        <input type="button" id="añadir" name="añadir" value="Añadir Producto">
+        <input type="button" id="limpiar" name="limpiar" value="Limpiar Formulario">
+    </form>
+
+    <h2>Invetario</h2>
+
+    <table id="tabla">
+        <tr>
+            <th>Nombre</th>
+            <th>categoría</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+        </tr>
+    </table><br><br>
+
+    <div id="divActualizar">
+        <input type="button" id="actualizar" name="actualizar" value="Actualizar Gráfico">
+    </div>
+
+    <h2>Gráfico de Cantidades</h2>
+
+    <div id="grafico"></div>
+
+    <script src=".//jquery-3.7.1.js"></script>
+
+    <script>
+          $(document).ready(function() {
+            //añadir
+            $("#añadir").click(function() {
+                var nombre = $("#nombre").val();
+                var categoria = $("#categoria").val();
+                var cantidad = $("#cantidad").val();
+                var precio = $("#precio").val();
+
+                if(nombre && categoria && cantidad && precio) {
+                    var fila = "<tr>" +
+                        "<td>" + nombre + "</td>" +
+                        "<td>" + categoria + "</td>" +
+                        "<td>" + cantidad + "</td>" +
+                        "<td>" + precio + "</td>" +
+                        "<td><input type='button' id='eliminar' name='eliminar' value='Eliminar'></td>" +
+                    "</tr>";
+
+                    $("#tabla tbody").append(fila);
+
+                    /*$("#nombre").val('');
+                    $("#categoria").val('');
+                    $("#cantidad").val('');
+                    $("#precio").val('');*/
+                }else{
+                    alert("complete todos los datos");
+                }
+            });
+
+            //eliminar
+            $(document).on("click", "#eliminar", function() {
+                $(this).closest("tr").remove();
+            });
+
+            //limpiar
+            $("#limpiar").click(function() {
+                $("#tabla tr:not(:first)").empty();
+            });
+
+            //grafico
+            $('#actualizar').click(function() {
+                $('#tabla tbody tr').each(function() {
+                    var cantidad = parseInt($(this).find('td').eq(2).text());
+
+                    var lineaGrafico = $('<div class="gra"></div>').css('height', cantidad + 'px');
+                    lineaGrafico.text(cantidad).css("color", "white");
+                    $('#grafico').append(lineaGrafico);
+
+                });
+            });
+        });
+    </script>
+</body>
+</html>

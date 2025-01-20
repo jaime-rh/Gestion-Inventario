@@ -1,0 +1,50 @@
+*{
+    box-sizing: border-box;
+    text-align: center;
+}
+
+form{
+    text-align: left;
+}
+
+#divActualizar{
+    text-align: left;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+tr, th, td{
+    border: 1px solid grey;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+#grafico{
+    width: 100%;
+    height: 300px;
+    border: 1px solid black;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.gra{
+    width: 50px;
+    background-color: rgb(83, 150, 83);
+    position: absolute;
+    bottom: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+    max-height: 295px;
+    display: inline-block;
+}
+
+.cantidad{
+    color: white;
+}
