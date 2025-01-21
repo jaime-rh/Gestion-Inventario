@@ -27,22 +27,19 @@ tr, th, td{
     width: 100%;
     height: 300px;
     border: 1px solid black;
-    position: relative;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-wrap: nowrap; /* hace que los div no salten de linea*/
+    overflow-x: auto; /*permite desplazarse horizontalmente*/
 }
 
 .gra{
+    display: inline-block;
+    margin-top: auto;
     width: 50px;
     background-color: rgb(83, 150, 83);
-    position: absolute;
-    bottom: 0;
     margin-left: 5px;
     margin-right: 5px;
     max-height: 295px;
-    display: inline-block;
 }
 
 .cantidad{

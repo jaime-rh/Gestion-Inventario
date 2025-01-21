@@ -82,15 +82,25 @@
             });
 
             //grafico
+            let filasPrevias=0;
             $('#actualizar').click(function() {
-                $('#tabla tbody tr').each(function() {
-                    var cantidad = parseInt($(this).find('td').eq(2).text());
+                const filasActuales = $('#tabla tbody tr').length;
 
-                    var lineaGrafico = $('<div class="gra"></div>').css('height', cantidad + 'px');
-                    lineaGrafico.text(cantidad).css("color", "white");
-                    $('#grafico').append(lineaGrafico);
+                if(filasActuales>filasPrevias){
+                    $("#tabla tbody tr:nth-of-type(n+2)").each(function() {
+                        if(!$(this).hasClass("lineaPintada")){
+                            var cantidad = parseInt($(this).find('td').eq(2).text());
 
-                });
+                            var lineaGrafico = $('<div></div>').css('height', cantidad + 'px');
+                            lineaGrafico.addClass("gra");
+                            lineaGrafico.text(cantidad).css("color", "white");
+                            $('#grafico').append(lineaGrafico);
+
+                            $(this).addClass("lineaPintada");
+                        }
+                    });
+                    filasPrevias=filasActuales;
+                }
             });
         });
     </script>
